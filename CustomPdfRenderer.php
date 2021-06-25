@@ -188,6 +188,7 @@ class CustomPdfRenderer extends ReportRenderer
         $this->TCPDF->SetFont($this->reportFont, $this->reportFontStyle, $this->reportSimpleFontSize);
         $this->TCPDF->Bookmark(Piwik::translate('ScheduledReports_FrontPage'));
 
+        // background color
         $this->TCPDF->Rect(0, 0, $this->TCPDF->getPageWidth(), $this->TCPDF->getPageHeight(), 
                'DF', "",  array(0, 102, 204)); // where the array is the color expected
 
@@ -203,7 +204,6 @@ class CustomPdfRenderer extends ReportRenderer
         // report title
         $this->TCPDF->SetFont($this->reportFont, '', $this->reportHeaderFontSize + 5);
         $this->TCPDF->SetTextColor($frontPageTextColor[0], $frontPageTextColor[1], $frontPageTextColor[2]);
-        // $this->TCPDF->Cell(40, 210, $reportTitle);
         $this->TCPDF->MultiCell(0, 0, $reportTitle, 0, 'L', 0, 1, 10, 140);
         $this->TCPDF->Ln(8 * 4);
 
@@ -228,6 +228,7 @@ class CustomPdfRenderer extends ReportRenderer
         $this->TCPDF->Ln(8);
         $this->TCPDF->SetFont($this->reportFont, '', $this->reportHeaderFontSize);
         $this->TCPDF->Ln();
+        $this->TCPDF->AddPage();
     }
 
     /**
