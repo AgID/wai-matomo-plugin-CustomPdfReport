@@ -16,7 +16,7 @@ use Piwik\Common;
 use Piwik\Filesystem;
 use Piwik\NumberFormatter;
 use Piwik\Piwik;
-use Piwik\Plugins\API\API;
+use Piwik\Plugins\CoreAdminHome\CustomLogo;
 use Piwik\ReportRenderer;
 use Piwik\TCPDF;
 
@@ -193,7 +193,9 @@ class CustomPdfRenderer extends ReportRenderer
                'DF', "",  array(0, 102, 204)); // where the array is the color expected
 
         // logo
-        $this->TCPDF->Image(API::getInstance()->getLogoUrl(true), $this->logoImagePosition[0], $this->logoImagePosition[1], 0, 0, $type = '', $link = '', $align = '', $resize = false, $dpi = 300);
+        $customLogo = new CustomLogo();
+        $this->TCPDF->Image($customLogo->getLogoUrl(true), $this->logoImagePosition[0], $this->logoImagePosition[1], 0, 0, $type = '', $link = '', $align = '', $resize = false, $dpi = 300);
+        $this->TCPDF->Ln(8);
 
         // platform title
         $this->TCPDF->SetFont($this->reportFont, '', $this->reportHeaderFontSize + 10);
